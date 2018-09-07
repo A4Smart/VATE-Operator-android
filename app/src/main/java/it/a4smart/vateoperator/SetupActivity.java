@@ -1,17 +1,18 @@
 package it.a4smart.vateoperator;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -56,6 +57,8 @@ public class SetupActivity extends FragmentActivity {
             if (current < PAGE_NUM) viewPager.setCurrentItem(current);
             else launchHomeScreen();
         });
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("frag_finished"));
     }
 
     private void setBottomDots(int page) {
@@ -79,6 +82,13 @@ public class SetupActivity extends FragmentActivity {
         finish();
     }
 
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            btnNext.setVisibility(View.VISIBLE);
+        }
+    };
+
     ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageSelected(int i) {
@@ -88,7 +98,7 @@ public class SetupActivity extends FragmentActivity {
                 btnNext.setText("fine");
                 btnSkip.setVisibility(View.GONE);
             } else {
-                btnNext.setText("succ");
+                btnNext.setVisibility(View.GONE);
                 btnSkip.setVisibility(View.VISIBLE);
             }
         }

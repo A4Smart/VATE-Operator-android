@@ -29,6 +29,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:background="@null"
+        android:visibility="gone"
         android:text="succ"
         android:textColor="@android:color/black" />
     <Button
