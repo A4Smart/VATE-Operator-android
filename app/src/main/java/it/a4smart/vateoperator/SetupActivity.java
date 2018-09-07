@@ -1,5 +1,6 @@
 package it.a4smart.vateoperator;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -22,7 +25,7 @@ public class SetupActivity extends FragmentActivity {
 
     private final int PAGE_NUM = 3;
 
-    private ViewPager viewPager;
+    private DeactivatedViewPager viewPager;
     private FragmentAdapter fragmentAdapter;
     private LinearLayout dotsLayout;
     private TextView[] dots;
